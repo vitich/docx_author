@@ -1,0 +1,13 @@
+#!/usr/bin/env python2
+'''
+Requirements: python-docx, parallel
+Usage: docx_author 'Putin\ Huilo' file.docx
+find /home/user/some_dir -type f -name "*\.docx" | parallel docx_author 'Putin\ Huilo'
+'''
+from docx import Document
+import sys
+print(sys.argv[2] + ' author changed to ' + sys.argv[1])
+document = Document(sys.argv[2])
+core_properties = document.core_properties
+core_properties.author = (sys.argv[1])
+document.save(sys.argv[2])
